@@ -30,10 +30,11 @@ public class TodoServer {
                     String inTask = in.readLine();
                     Gson gson = new GsonBuilder().create();
                     gson.toJson(inTask);
-                    Todos task = gson.fromJson(inTask, Todos.class);
-                    if (task.getType().equals("ADD")) {
+                    Operation task = gson.fromJson(inTask, Operation.class);
+
+                    if (task.getType().equals(Type.ADD)) {
                         todos.addTask(task.getTask());
-                    } else if (task.getType().equals("REMOVE")) {
+                    } else if (task.getType().equals(Type.REMOVE)) {
                         todos.removeTask(task.getTask());
                     }
                     out.println(todos.getAllTasks());
